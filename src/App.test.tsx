@@ -1,9 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
+import { findByTestId } from './Utilities/TestUtilities';
+
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders without crashing', () => {
+  const wrapper = shallow(<App />);
+  const rootComponent = findByTestId(wrapper, 'application');
+
+  expect(rootComponent.length).toBe(1);
 });
