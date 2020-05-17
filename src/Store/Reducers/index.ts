@@ -1,8 +1,8 @@
-import { combineReducers, Reducer } from 'redux'
+import { combineReducers, Reducer } from 'redux';
 import { IStore } from '../Interfaces';
 
-import ShareholdersReducer from './ShareholdersReducer';
+import { ShareholdersReducer } from './ShareholdersReducer';
 
 export const reducers: Reducer = combineReducers<IStore>({
-  Shareholders: ShareholdersReducer
+  Shareholders: ShareholdersReducer || (() => {})
 });

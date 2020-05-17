@@ -1,3 +1,5 @@
+import { IShareholder } from '~/Entities';
+
 type DataObject = object | Array<object>;
 
 export interface IStoreProps {
@@ -16,23 +18,16 @@ export interface IInfoProps {
   errors: any[];
 }
 
-export interface IShareHolder {
-  firstName: string;
-  lastName: string;
-  email: string;
-  share: number;
-  isDirector: boolean;
-}
-
-export interface IShareHoldersStoreNode extends IStoreNode<IShareHolder[]> {
-  data: IShareHolder[];
-}
-
 export interface IStoreNode<T extends DataObject> {
   data: T;
   info: IInfoProps;
   settings?: any;
 }
+
+export interface IShareHoldersStoreNode extends IStoreNode<IShareholder[]> {
+  data: IShareholder[];
+}
+
 
 export interface IStore {
   Shareholders: IShareHoldersStoreNode;

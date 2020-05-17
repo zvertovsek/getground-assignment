@@ -1,12 +1,6 @@
-import { createStore, Store } from 'redux';
-import { setMiddleware } from './Middleware';
-import { reducers } from './Reducers';
-import { IStoreProps, DefaultStoreProps} from './Interfaces';
+export { default as Provider } from './Provider';
 
-export default function storeCreator(props: IStoreProps = DefaultStoreProps): Store {
-  const middleware = setMiddleware(props);
-  const store = createStore(reducers, middleware);
-  // runSagaListeners();
-
-  return store;
-}
+export * from './Actions';
+export * from './Interfaces';
+export * from './Middleware';
+export * from './Reducers'; 
