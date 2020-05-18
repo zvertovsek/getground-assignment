@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Bermuda, HummingBird, RiceFlower } from './Colors';
+import { Bermuda, HummingBird, RiceFlower, DimGrey } from './Colors';
 import { linearGradient } from './Mixins';
 
 export const H1 = styled.h1`
@@ -19,14 +19,23 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-  margin: 6px 0;
+  margin: 0;
   padding: 0;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 20px;
   color: ${Bermuda.rgb};
   font-weight: bold;
   letter-spacing: 1.75px;
   text-transform: uppercase;
+`;
+
+export const H6 = styled.h6`
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  line-height: 14px;
+  color: ${DimGrey.rgb};
+  font-weight: normal;
 `;
 
 export const InputLabel = styled.label`

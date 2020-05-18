@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, Store } from 'redux';
 import { setMiddleware } from './Middleware';
 import { reducers } from './Reducers';
+import { startListeners } from './Operations';
 import { IStoreProps, DefaultStoreProps} from './Interfaces';
 
 interface IProps {
@@ -16,7 +17,7 @@ const StoreProvider: React.FC<IProps> = (props) => {
     
     const middleware = setMiddleware(storeProps);
     const store = createStore(reducers, middleware);
-    // runSagaListeners();
+    startListeners();
   
     return store;
   } 

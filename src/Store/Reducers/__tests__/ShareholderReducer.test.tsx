@@ -15,12 +15,12 @@ describe('Shareholders Reducer', () => {
     }
 
     const action: any = {
-      type: ShareholdersActionTypes.ADD_SHAREHOLDER,
+      type: ShareholdersActionTypes.ADD_SHAREHOLDER_SUCCESS,
       payload: newShareholder
     };
 
     const newState = ShareholdersReducer(initialState, action);
-    expect(newState.data).toEqual([newShareholder]);
+    expect(newState.data).toEqual([ ...initialState.data, newShareholder]);
 
   });
 

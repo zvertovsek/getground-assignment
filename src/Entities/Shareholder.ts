@@ -8,4 +8,12 @@ export interface IShareholder {
   isCreator: boolean;
 };
 
-
+export const DefaultShareholder: IShareholder = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  share: 0,
+  isDirector: false,
+  isCreator: false
+}

@@ -2,6 +2,11 @@ import { IShareholder } from '~/Entities';
 
 type DataObject = object | Array<object>;
 
+export interface IAction {
+  type: string;
+  payload?: any;
+}
+
 export interface IStoreProps {
   env: 'prod' | 'dev';
 }
@@ -12,6 +17,7 @@ export const DefaultStoreProps: IStoreProps = {
 
 export interface IInfoProps {
   isLoading: boolean;
+  isProcessing: boolean;
   isInitialized: boolean;
   hasChanges: boolean;
   hasErrors: boolean;
@@ -21,7 +27,6 @@ export interface IInfoProps {
 export interface IStoreNode<T extends DataObject> {
   data: T;
   info: IInfoProps;
-  settings?: any;
 }
 
 export interface IShareHoldersStoreNode extends IStoreNode<IShareholder[]> {

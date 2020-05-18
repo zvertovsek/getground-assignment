@@ -1,31 +1,44 @@
 import React from 'react';
+import { IShareholder } from '~/Entities';
 import { FormContainer, Row, Cell, H2, Input, InputLabel, FormSubmitButton } from '~/Styling';
 
-const initialState: any = {
-  firstName: "",
-  lastName: "",
-  email: "",
+interface IProps {
+  type: 'edit' | 'create';
+  shareholder: IShareholder;
+  onSubmit: (data: IShareholder) => void;
 }
 
-const Component: React.FC = () => {
-  const [ state, setState ] = React.useState(initialState);
+const Component: React.FC<IProps> = (props) => {
+  const [ state, setState ] = React.useState({ ...props.shareholder });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    const currentState = { ...state };
-    currentState[event.target.name] = event.target.value;
+    const currentState: IShareholder = { ...state };
+    (currentState as any)[event.target.name] = event.target.value;
     setState(currentState);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    props.onSubmit(state);
 
-    console.log(state);
+    if (props.type === 'create') {
+      setState(props.shareholder);
+    }
+    
+  }
+
+  const generateTitle = () => {
+    return props.type === 'create' ? "Add Shareholder" : "Shareholder";
+  }
+
+  const generateButtonLabel = () => {
+    return props.type === 'create' ? "Add Shareholder" : "Edit Shareholder";
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <H2>Add Shareholder</H2>
+    <FormContainer onSubmit={handleSubmit} key={state.id}>
+      <H2>{generateTitle()}</H2>
       <Row>
         <Cell>
           <InputLabel>Shareholders First Name</InputLabel>
@@ -42,7 +55,7 @@ const Component: React.FC = () => {
           <Input name="email" value={state.email} onChange={handleChange}  />
         </Cell>
         <Cell>
-          <FormSubmitButton type="submit">Add Shareholder</FormSubmitButton>
+          <FormSubmitButton type="submit">{generateButtonLabel()}</FormSubmitButton>
         </Cell>
       </Row>
     </FormContainer>
